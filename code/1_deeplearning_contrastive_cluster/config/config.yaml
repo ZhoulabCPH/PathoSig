@@ -1,0 +1,36 @@
+# Main
+seed: 2022
+workers: 0
+out_dir: "./models"
+initial_checkpoint: 'None'
+
+#datasets_1
+num_fold: 5
+data_path: "../../Datasets/Image_4_magnification"
+image_size: 224
+Train_LogData_WSI: "./Log/Train_Data/5Fold_Train_WSI.csv"
+Test_LogData_WSI: "./Log/Train_Data/5Fold_Test_WSI.csv"
+Test_LogData_Patient: "./Log/Train_Data/5Fold_Test_Patient.csv"
+Train_LogData_Patient: "./Log/Train_Data/5Fold_Train_Patient.csv"
+All_LogData: "./Log/Train_Data/SCLC_Cluster_20221115.csv"
+TheLogSavePath: "./Log/Train_Data/"
+# train options
+start_lr: 5e-4
+batch_size: 8
+start_epoch: 0
+Epoch: 100
+
+# models options
+cluster_dim: 50
+feature_dim: 128
+Laten_Dim: 2048
+Resnet_PRE_Path: "../Model_Pretrained/Resnet50/resnet50.pth"
+
+# loss options
+weight_decay: 0.
+instance_temperature: 0.5
+cluster_temperature: 1.0
+lambd: 0.005
+alpha: 0.005
+
+
