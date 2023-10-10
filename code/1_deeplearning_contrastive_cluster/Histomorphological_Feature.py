@@ -35,7 +35,7 @@ def Seaborn_Corr(df):
 
 def KM_File(Path):
     My_Val_Result = pd.read_csv(Path).iloc[:, [1, -1]]
-    Clinical_Data=pd.read_excel('../../Datasets/Clinical_Data/20220802-342-247-48临床病理信息表(编码) .xlsx',sheet_name=0)
+    Clinical_Data=pd.read_excel('clincial .xlsx',sheet_name=0)
     names = My_Val_Result.values[:,0]
     Paint_Names = np.array([name.split('_')[0]+"_"+name.split('_')[1] for name in names])
     Paint_Type = np.array(list(set(Paint_Names)))
@@ -55,7 +55,6 @@ def KM_File(Path):
         OSState = Clinical_Data.iloc[name_.split("_")[0]== Clincial_name]['OSState'].values
         DFS=Clinical_Data.iloc[name_.split("_")[0]==Clincial_name]['DFS'].values/12.0
         DFSState = Clinical_Data.iloc[name_.split("_")[0] == Clincial_name]['DFSState'].values
-
         # name_=Paint_Type[0]
         Single_WSI = np.where(name_ == Paint_Names)[0]
         for cluster in My_Val_Result.iloc[Single_WSI, 1]:
@@ -71,15 +70,9 @@ def KM_File(Path):
     Val_Val_DFState=np.array(Val_Val_DFState)
 
     Val_Name=np.array(Val_Name)
-    # Clusterfile = Clusterfile + 1
     Clusterfiles=np.sum(Clusterfile,axis=1)
     for index,i in enumerate(Clusterfiles):
         Clusterfile[index,:]=Clusterfile[index,:]/i
-    # np.sum(Clusterfiless[2,:])
-    # if Path.split('_')[1].split('/')[1]=='Train':#
-    #     Clusterfile=std.fit_transform(Clusterfile)
-    # else:
-    #     Clusterfile = std.transform(Clusterfile)
     Clinical_File=pd.DataFrame({'Sample_Name':Val_Name,'Val_OSState':Val_OSState.T[0],
                   'Val_OS':Val_OS.T[0],'Val_DFS':Val_DFS.T[0],'Val_DFState':Val_Val_DFState.T[0],
                                 'Label_Pre':Label_Pre})
@@ -91,7 +84,7 @@ def KM_File(Path):
     MyFile.to_csv(Path.split('_')[0].split('/')[1]+'/KM_File/'+Path.split('_')[1].split('/')[1]+Path.split('_')[-2]+'_UmapKM_BoxPlot.csv')
 def WSI_Patch(Path):
     My_Val_Result = pd.read_csv(Path).iloc[:, 1:-1]
-    Clinical_Data=pd.read_excel('../../../../Datasets/Clinical_Data/20220802-342-247-48临床病理信息表(编码) .xlsx',sheet_name=0)
+    Clinical_Data=pd.read_excel('clincial.xlsx',sheet_name=0)
     names = My_Val_Result.values[:,0]
     Paint_Names = np.array([name.split('_')[0] + '_' + name.split('_')[1] for name in names])
     Paint_Type = np.array(list(set(Paint_Names)))
@@ -119,15 +112,6 @@ def WSI_Patch(Path):
     Val_OS = np.array(Val_OS)
     Val_OSState = np.array(Val_OSState)
     Val_Name=np.array(Val_Name)
-    # Clusterfiles=np.sum(Clusterfile,axis=1)
-    # for index,i in enumerate(Clusterfiles):
-    #     Clusterfile[index,:]=Clusterfile[index,:]/i
-    # # Clusterfile=np.exp(1+Clusterfile)
-    # np.sum(Clusterfiless[2,:])
-    # if Path.split('_')[0].split('/')[-1]=='Train':
-    #     Clusterfile=std.fit_transform(Clusterfile)
-    # else:
-    #     Clusterfile = std.transform(Clusterfile)
 
     Clinical_File=pd.DataFrame({'Sample_Name':Val_Name,'Val_OSState':Val_OSState.T[0],
                   'Val_OS':Val_OS.T[0],'Label_Pre':Label_Pre})
@@ -139,19 +123,13 @@ def WSI_Patch(Path):
     MyFile.to_csv(Path.split('_')[0]+'_UmapKM_Cluster_BoxPlot.csv')
 
 if __name__ == '__main__':
-    for i in range(9,10):
-        if int(i)>=10:
-            Train_path = './输入文件/Umap_File/Train_' + '000000' + str(i) + '_Umap.csv'
-            Test_path = './输入文件/Umap_File/Test_' + '000000' + str(i) + '_Umap.csv'
-            ZC_type_path='./输入文件/Umap_File/ZC_type_' +'000000'+str(i)+'_Umap.csv'
-            Composite_path = './输入文件/Umap_File/Composite_type_' + '000000' + str(i) + '_Umap.csv'
-        else:
-            Train_path = './输入文件/Umap_File/Train_' + '0000000' + str(i) + '_Umap.csv'
-            Test_path = './输入文件/Umap_File/Test_' + '0000000' + str(i) + '_Umap.csv'
-            ZC_type_path='./输入文件/Umap_File/ZC_type_' +'0000000'+str(i)+'_Umap.csv'
-            Composite_path = './输入文件/Umap_File/Composite_type_' + '0000000' + str(i) + '_Umap.csv'
+        Train_path = './输入文件/Umap_File/Train_' + '0000001_Umap.csv'
+        Test_path = './输入文件/Umap_File/Test_' + '0000001_Umap.csv'
+        ZC_type_path='./输入文件/Umap_File/ZC_type_' +'0000001_Umap.csv'
+        Composite_path = './输入文件/Umap_File/Composite_type_' + '0000001_Umap.csv'
         KM_File(Path=Train_path)
         KM_File(Path=Test_path)
         KM_File(Path=ZC_type_path)
         KM_File(Path=Composite_path)
-        print("have done "+str(i))
+
+
