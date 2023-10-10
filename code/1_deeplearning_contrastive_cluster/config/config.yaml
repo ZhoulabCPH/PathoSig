@@ -6,13 +6,13 @@ initial_checkpoint: 'None'
 
 #datasets_1
 num_fold: 5
-data_path: "../../Datasets/Image_4_magnification"
+data_path: "data_path"
 image_size: 224
-Train_LogData_WSI: "./Log/Train_Data/5Fold_Train_WSI.csv"
-Test_LogData_WSI: "./Log/Train_Data/5Fold_Test_WSI.csv"
-Test_LogData_Patient: "./Log/Train_Data/5Fold_Test_Patient.csv"
-Train_LogData_Patient: "./Log/Train_Data/5Fold_Train_Patient.csv"
-All_LogData: "./Log/Train_Data/SCLC_Cluster_20221115.csv"
+Train_LogData_WSI: "WSI.csv"
+Test_LogData_WSI: "Test_WSI.csv"
+Test_LogData_Patient: "5Fold_Test_Patient.csv"
+Train_LogData_Patient: "5Fold_Train_Patient.csv"
+All_LogData: "SCLC_Cluster.csv"
 TheLogSavePath: "./Log/Train_Data/"
 # train options
 start_lr: 5e-4
@@ -24,7 +24,7 @@ Epoch: 100
 cluster_dim: 50
 feature_dim: 128
 Laten_Dim: 2048
-Resnet_PRE_Path: "../Model_Pretrained/Resnet50/resnet50.pth"
+Resnet_PRE_Path: "resnet50.pth"
 
 # loss options
 weight_decay: 0.
