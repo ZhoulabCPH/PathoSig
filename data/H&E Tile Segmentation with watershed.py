@@ -220,21 +220,8 @@ def WSI_Whole(image_path,outPut):
 
 
 if __name__ == '__main__':
-
-    # a=1
-    #
-    #
-    # Image=10000*10000
-    # len=np.sqrt(Image//4)
-    #
-    #
-
-
     save_path= '../../../Datasets/Image_4_magnification/'
     Paths='../../../Datasets/SCLC_Image/'
-    # main(image_path='../../../Datasets/Image_4_magnification/Zhou-1_0_34.png', save_path=save_path, Cut_Image_Size=256, Orial_Image_Size=10000, Bold_Image_Szie=10,
-    #      magnification=4)
-
     FileName=os.listdir(Paths)
     for name in FileName:
         print('已经输出:'+name)
